@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Portal</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; background: #111; color: #eee; }
+        button { padding: 10px 20px; font-size: 16px; margin-top: 20px; cursor: pointer; background: #2a7; color: white; border: none; border-radius: 5px; }
+        button:active { background: #1e5; }
+        #response { margin-top: 20px; font-weight: bold; color: #9fd; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Unified Web Page & Backend</h1>
+    <p>Running entirely offline inside a single APK.</p>
+    
+    <button onclick="fetchBackendData()">Call Local Backend API</button>
+    <div id="response"></div>
+
+    <script>
+        function fetchBackendData() {
+            document.getElementById('response').innerText = 'Connecting...';
+            fetch('/api/data')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('response').innerText = data.message;
+                })
+                .catch(err => {
+                    document.getElementById('response').innerText = 'Error connecting to backend.';
+                });
+        }
+    </script>
+</body>
+</html>
